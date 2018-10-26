@@ -40,7 +40,7 @@
 #define __RTC_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32_def.h"
+#include "clock.h"
 
 #ifdef HAL_RTC_MODULE_ENABLED
 
@@ -55,8 +55,8 @@ typedef enum {
 } hourFormat_t;
 
 typedef enum {
-  AM,
-  PM
+  HOUR_AM,
+  HOUR_PM
 } hourAM_PM_t;
 
 /* See AN4579 Table 5 for possible values */
@@ -71,13 +71,6 @@ typedef enum {
   M_MSK   = 16,
   Y_MSK   = 32
 } alarmMask_t;
-
-/* Clock source selection */
-typedef enum {
-  LSI_CLOCK,
-  LSE_CLOCK,
-  HSE_CLOCK
-} sourceClock_t;
 
 typedef void(*voidCallbackPtr)(void *);
 
@@ -123,7 +116,8 @@ typedef void(*voidCallbackPtr)(void *);
 #define IS_RTC_HOUR12(HOUR)      IS_RTC_HOUR24(HOUR)
 #endif /* !STM32F1xx && !IS_RTC_WEEKDAY */
 
-/* __HAL_RCC_GET_RTC_SOURCE is not defined for F2 and F4 */
+/* __HAL_RCC_GET_RTC_SOURCE is not defined for F2*/
+/*
 #ifndef __HAL_RCC_GET_RTC_SOURCE
 static uint32_t RTC_getSource(void) {
   RCC_PeriphCLKInitTypeDef  *PeriphClkInit;
@@ -132,6 +126,7 @@ static uint32_t RTC_getSource(void) {
 }
 #define __HAL_RCC_GET_RTC_SOURCE()  RTC_getSource()
 #endif
+*/
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
